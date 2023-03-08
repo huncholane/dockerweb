@@ -5,6 +5,7 @@ RUN mkdir /run/postgresql
 RUN chown postgres:postgres /run/postgresql
 
 COPY docker-entrypoint.sh /
+COPY sample /sample
 RUN chmod 777 /docker-entrypoint.sh
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
