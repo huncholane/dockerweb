@@ -3,6 +3,9 @@ RUN apk update && apk upgrade --available
 RUN apk add --update python3 nodejs npm postgresql postgresql-jit nginx redis
 RUN mkdir /run/postgresql
 RUN chown postgres:postgres /run/postgresql
+ENV IS_DOCKER=1
+ENV PYTHONDONTWRITEBYTECODE=1
+ENV PYTHONUNBUFFERED=1
 
 COPY docker-entrypoint.sh /
 COPY sample /sample
