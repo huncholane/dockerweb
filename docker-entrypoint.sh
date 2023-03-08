@@ -21,5 +21,8 @@ EOF
 nginx
 tail -f /var/log/nginx/access.log &
 
+# take care of redis
+redis-server &
+
 # run the cmd
 $@
