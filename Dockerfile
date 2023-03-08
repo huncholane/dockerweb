@@ -5,6 +5,6 @@ RUN mkdir /run/postgresql
 RUN chown postgres:postgres /run/postgresql
 
 COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT [ "docker-entrypoint.sh" ]
+ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
 
 EXPOSE 80
