@@ -4,7 +4,8 @@ RUN apk add --update python3 nodejs npm postgresql postgresql-jit  nginx
 RUN mkdir /run/postgresql
 RUN chown postgres:postgres /run/postgresql
 
-COPY docker-entrypoint.sh /usr/local/bin/
-ENTRYPOINT [ "/usr/local/bin/docker-entrypoint.sh" ]
+COPY docker-entrypoint.sh /
+RUN chmod 777 /docker-entrypoint.sh
+ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
 EXPOSE 80
