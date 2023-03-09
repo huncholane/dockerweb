@@ -4,3 +4,4 @@ daphne
 djangorestframework
 channels
 django-nextjs
+channels-redis
