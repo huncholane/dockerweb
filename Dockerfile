@@ -11,6 +11,7 @@ ENV PYTHONUNBUFFERED=1
 COPY docker-entrypoint.sh /
 COPY sample /sample
 RUN chmod 777 /docker-entrypoint.sh
+RUN pip install -r /sample/backend/requirements.txt
 ENTRYPOINT [ "/docker-entrypoint.sh" ]
 
 EXPOSE 80
