@@ -3,3 +3,4 @@ python-dotenv
 daphne
 djangorestframework
 channels
+django-nextjs
