@@ -18,7 +18,7 @@ echo 'Postgres Ready'
 EOF
 
 # take care of nginx business
-if [ ! `ls /etc/nginx` ];then
+if [ ! "$(ls /etc/nginx)" ];then
     echo 'Moving sample into nginx'
     cp -r /sample/nginx/* /etc/nginx
 fi
