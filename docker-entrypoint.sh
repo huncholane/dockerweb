@@ -1,14 +1,15 @@
 #!/bin/sh
+echo "Beginning of huncho web entrypoint."
 
 if [ ! -d /var/lib/postgresql/data ];then
     mkdir /var/lib/postgresql/data
 fi
 
-# take care of postgres business
 chmod 700 /var/lib/postgresql/data
 chown -R postgres:postgres /var/lib/postgresql/data
 su -s /bin/sh postgres <<EOF
 cd
+echo "Switched to postgres user"
 if [ -z $(ls /var/lib/postgresql/data) ];then
     echo 'No data found, initializing postgres.'
     initdb -D data > /dev/null > /dev/null 2>&1
