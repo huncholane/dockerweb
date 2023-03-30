@@ -1,20 +1,25 @@
 #!/bin/sh
 
+if [ ! -d /var/lib/postgresql/data ];then
+    mkdir /var/lib/postgresql/data
+fi
+
 # take care of postgres business
-chown -R postgres:postgres /var/lib/postgresql
+chmod 700 /var/lib/postgresql/data
+chown -R postgres:postgres /var/lib/postgresql/data
 su -s /bin/sh postgres <<EOF
 cd
-if [ ! -d data ];then
+if [ -z $(ls /var/lib/postgresql/data) ];then
     echo 'No data found, initializing postgres.'
-    mkdir data
-    chmod 700 data
-    initdb -D data > /dev/null 2> /dev/null
+    initdb -D data > /dev/null > /dev/null 2>&1
     echo "host all all 0.0.0.0/0 md5" >> /var/lib/postgresql/data/pg_hba.conf
     echo "listen_addresses='*'" >> /var/lib/postgresql/data/postgresql.conf
     sed -i '/unix_socket_directories/d' /var/lib/postgresql/data/postgresql.conf
     echo 'Postgres initialized'
+else
+    echo "Postgres data found, skipping initialization"
 fi
-pg_ctl start -D /var/lib/postgresql/data > /dev/null
+pg_ctl start -D /var/lib/postgresql/data > /dev/null 2>&1
 echo 'Postgres Ready'
 EOF
 
