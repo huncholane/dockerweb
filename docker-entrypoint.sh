@@ -1,6 +1,7 @@
 #!/bin/sh
 
 # take care of postgres business
+chown -R postgres:postgres /var/lib/postgresql
 su -s /bin/sh postgres <<EOF
 cd
 if [ ! -d data ];then
